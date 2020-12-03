@@ -52,24 +52,23 @@ class PrefixTree:
     def insert(self, string):
         """Insert the given string into this prefix tree."""
         # TODO
-        
 
-        current = self.root
+        current_node = self.root
         #"h e l l o"
         for i in range(len(string)):
 
-          #if current does not have children:
-            #insert new node with current #char in string
-            #create a new node
-            #add it as a child of current node
-          #if there is a child the child is the letter of the string
-          #current = that child
-        #when I'm at the end of the string I want to make the last character terminal
+          # if there is a child the child is the letter of the string
+          # current = that child
+          # when at the end of the string, make the last character terminal
           print(string[i])
+          #if current does not have children:
           if not current.has_child(string[i]):
-            new_node = PrefixTreeNode(string[i])
-            current.add_child(string[i],new_node)
-            print("Current", current)
+              #create a new node
+              new_node = PrefixTreeNode(string[i])
+              #insert new node with current #char in string
+              # add it as a child of current node
+              current.add_child(string[i],new_node)
+          print("Current", current)
           current = current.get_child(string[i])
           print("Change to next")
         print("End", current)
@@ -105,7 +104,9 @@ class PrefixTree:
         # if it's terminal, append prefix to completions list
 
         # if not terminal, traverse
+        if not self.is_terminal():
             # for every child of this node, get a child node of this node
+
             # get child of this node
             # use traverse on child with prefix +, completions.append
             self._traverse(child, prefix+child.character, completion.append)
