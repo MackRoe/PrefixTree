@@ -42,7 +42,7 @@ class PrefixTree:
         # TODO
         if string == '':
             return True
-        current_node = self.Root
+        current_node = self.Root # instance of PrefixTreeNode
         for char in string:
             if char not in current_node.children:
                 return False
