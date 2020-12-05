@@ -102,14 +102,16 @@ class PrefixTree:
         # get the node object using find prefix node
         node = self._find_node(prefix)[0]
         # if it's terminal, append prefix to completions list
-
+        if node.is_terminal():
+            completions.append()
         # if not terminal, traverse
-        if not self.is_terminal():
+        if not node.is_terminal():
             # for every child of this node, get a child node of this node
-
+            for child in node.children:
             # get child of this node
+
             # use traverse on child with prefix +, completions.append
-            self._traverse(child, prefix+child.character, completion.append)
+                self._traverse(child, prefix+child.character, completions.append)
         # this will get deepest node that fits prefix
 
 
@@ -125,9 +127,10 @@ class PrefixTree:
         this prefix tree and visit each node with the given visit function."""
         # TODO
         # if node is terminal, call visit
-        if node.is_terminal()
+        if node.is_terminal():
         # if node has children
-            # loop children and call traverse on each
+            visit(prefix)
+        # loop children and call traverse on each
         if len(node.children > 0):
             for child in node.children:
 
