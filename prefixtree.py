@@ -54,24 +54,13 @@ class PrefixTree:
         # TODO
 
         current_node = self.root
-        #"h e l l o"
-        for i in range(len(string)):
 
-          # if there is a child the child is the letter of the string
-          # current = that child
-          # when at the end of the string, make the last character terminal
-          print(string[i])
-          #if current does not have children:
-          if not current.has_child(string[i]):
-              #create a new node
-              new_node = PrefixTreeNode(string[i])
-              #insert new node with current #char in string
-              # add it as a child of current node
-              current.add_child(string[i],new_node)
-          print("Current", current)
-          current = current.get_child(string[i])
-          print("Change to next")
-        print("End", current)
+        for char in string:
+            if char not in current_node.children:
+            #if current does not have children:
+                current_node.children[char] = PrefixTreeNode(char)
+            current_node = current_node.children(char)
+
         current.terminal = True
 
 

@@ -7,8 +7,8 @@ class PrefixTreeNode:
     associates the next character in a string to the next node along its path from
     the tree's root node to a terminal node that marks the end of the string."""
 
-    # Choose an appropriate type of data structure to store children nodes in
-    # Hint: Choosing list or dict affects implementation of all child methods
+    # Choose data structure to store children nodes in
+    # Choosing list or dict affects implementation of all child methods
     CHILDREN_TYPE = list  # or dict
 
     def __init__(self, character=None):
@@ -57,8 +57,8 @@ class PrefixTreeNode:
         raise ValueError if given character is amongst this node's children."""
         if not self.has_child(character):
             # Add given character and child node to this node's children
-            new_node = PrefixTreeNode(character)
-            self.children.append(new_node)
+            child_node = PrefixTreeNode(character)
+            self.children.append(child_node)
             # ...
         else:
             raise ValueError(f'Child exists for character {character!r}')
