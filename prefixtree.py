@@ -46,6 +46,7 @@ class PrefixTree:
         for char in string:
             if char not in current_node.children:
                 return False
+            # move pointer
             current_node = current_node.get_child(char)
         return current_node.terminal == True
 
@@ -56,8 +57,10 @@ class PrefixTree:
         current_node = self.root
 
         for char in string:
+            # char: character
+            # check if char exists in the list of the current node's children
             if char not in current_node.children:
-            #if current does not have children:
+                # if not, create the node with the char
                 current_node.children[char] = PrefixTreeNode(char)
             current_node = current_node.children(char)
 
@@ -73,12 +76,13 @@ class PrefixTree:
         if len(string) == 0:
             return self.root, 0
         # Start with the root node
-        node = self.root
+        current_node = self.root
         depth = 0
         # TODO ?
         for letter in string:
-            if node.has_child(letter):
-                node = node.get_child(letter)
+            if current_node.has_child(letter):
+                current_node = current_node.get_child(letter)
+                # why are we using get_child here?
                 depth += 1
         return node, depth
 
@@ -100,6 +104,7 @@ class PrefixTree:
             # get child of this node
 
             # use traverse on child with prefix +, completions.append
+                # this is where the >> visit << function is defined <<<-*-*-*
                 self._traverse(child, prefix+child.character, completions.append)
         # this will get deepest node that fits prefix
 
@@ -119,12 +124,12 @@ class PrefixTree:
         if node.is_terminal():
         # if node has children
             visit(prefix)
+            # automatically appends to list of completions
+
         # loop children and call traverse on each
         if len(node.children > 0):
             for child in node.children:
-
                 self._traverse(child, prefix+child.character, visit)
-
 
 
 def create_prefix_tree(strings):
