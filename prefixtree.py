@@ -52,19 +52,20 @@ class PrefixTree:
 
     def insert(self, string):
         """Insert the given string into this prefix tree."""
-        # TODO
 
         current_node = self.root
 
-        for char in string:
-            # char: character
+        # needs a list indice
+        for indice in range(len(string)):
             # check if char exists in the list of the current node's children
-            if char not in current_node.children:
+            if string[indice] not in current_node.children:
+                char = string[indice]
+                # string[indice] is char
                 # if not, create the node with the char
-                current_node.children[char] = PrefixTreeNode(char)
+                current_node.children[indice] = PrefixTreeNode(char)
             current_node = current_node.children(char)
 
-        current.terminal = True
+        current_node.terminal = True
 
 
     def _find_node(self, string):
